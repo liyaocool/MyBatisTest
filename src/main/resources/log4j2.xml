@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration status="error" xmlns="http://logging.apache.org/log4j/2.0/config">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+<!--        文件输出debug信息-->
+        <File name="File" fileName=".\mylog.txt">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="Console"/>
+        </Root>
+<!--        定义一个名为"TRACE_ALL"的logger-->
+        <Logger name="TRACE_ALL" level="trace" additivity="false">
+            <AppenderRef ref="File" />
+            <AppenderRef ref="Console" />
+        </Logger>
+    </Loggers>
+</Configuration>
