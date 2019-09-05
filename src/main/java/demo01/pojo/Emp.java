@@ -11,6 +11,15 @@ public class Emp {
     private Double sal;
     private Double comm;
     private Integer deptno;
+    private Dept dept;
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
 
     public Integer getEmpno() {
         return empno;
@@ -86,6 +95,7 @@ public class Emp {
                 ", hiredate=" + hiredate +
                 ", sal=" + sal +
                 ", comm=" + comm +
+                ", dept=" + dept +
                 ", deptno=" + deptno +
                 '}';
     }

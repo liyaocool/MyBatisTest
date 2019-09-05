@@ -199,4 +199,19 @@ public class MyBatisTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void getAllEmpWithDept() {
+
+        try {
+            List<Emp> emps = session.selectList("EmpMapper.getEmpWithDept");
+            for (Emp emp : emps) {
+                System.out.println(emp);
+            }
+            System.out.println("查询所有员工所在部门名结束");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

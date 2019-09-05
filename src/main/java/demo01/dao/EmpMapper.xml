@@ -8,7 +8,7 @@
 <mapper namespace="EmpMapper">
     <insert id="addEmp" parameterType="Emp">
         insert into emp (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
-        VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+        VALUES (#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
     </insert>
 
     <update id="updateEmp" parameterType="Emp">
@@ -20,14 +20,38 @@
             SAL=#{sal},
             COMM=#{comm},
             DEPTNO=#{deptno}
-        where EMPNO=#{empno}
+        where EMPNO = #{empno}
     </update>
 
     <delete id="deleteEmp" parameterType="int">
-        delete from emp where EMPNO=#{empno}
+        delete
+        from emp
+        where EMPNO = #{empno}
     </delete>
 
     <select id="getAllEmp" resultType="Emp">
-        select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp
+        select empno,
+               ename,
+               job,
+               mgr,
+               hiredate,
+               sal,
+               comm,
+               deptno
+        from emp
+    </select>
+    
+    
+    <resultMap id="empDeptMap" type="Emp">
+        <id property="empno" column="EMPNO"/>
+        <result property="ename" column="ENAME"/>
+        <result property="dept.dname" column="DNAME"/>
+    </resultMap>
+
+    <select id="getEmpWithDept" resultMap="empDeptMap">
+        select e.EMPNO, e.ENAME, d.DNAME
+        from emp e
+                 inner join dept d
+                            on e.DEPTNO = d.DEPTNO
     </select>
 </mapper>
