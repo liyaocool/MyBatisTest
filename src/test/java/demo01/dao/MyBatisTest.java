@@ -14,6 +14,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Date;
+import java.util.List;
 
 
 public class MyBatisTest {
@@ -97,6 +98,21 @@ public class MyBatisTest {
     }
 
     @Test
+    public void getAllDept() {
+
+        try {
+            List<Dept> depts = session.selectList("DeptMapper.getAllDept");
+            for (Dept dept : depts) {
+                System.out.println(dept);
+            }
+            System.out.println("查询所有部门结束");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void insertEmp() {
 
         try {
@@ -151,6 +167,21 @@ public class MyBatisTest {
         } catch (Exception e){
             e.printStackTrace();
             session.rollback();
+        }
+    }
+
+    @Test
+    public void getAllEmp() {
+
+        try {
+            List<Emp> emps = session.selectList("EmpMapper.getAllEmp");
+            for (Emp emp : emps) {
+                System.out.println(emp);
+            }
+            System.out.println("查询所有员工结束");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

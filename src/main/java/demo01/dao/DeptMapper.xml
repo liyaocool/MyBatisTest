@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DeptMapper">
-    <insert id="addDept" parameterType="demo01.pojo.Dept">
+    <insert id="addDept" parameterType="Dept">
         insert into dept(DEPTNO, DNAME, LOC) VALUES (#{deptno}, #{dname}, #{loc})
     </insert>
 
-    <update id="updateDept" parameterType="demo01.pojo.Dept">
+    <update id="updateDept" parameterType="Dept">
         update dept
         set LOC=#{loc},
             DNAME=#{dname}
@@ -17,4 +17,8 @@
     <delete id="deleteDept" parameterType="int">
         delete from dept where DEPTNO=#{deptno}
     </delete>
+
+    <select id="getAllDept" resultType="Dept">
+        select DEPTNO, DNAME, LOC FROM dept
+    </select>
 </mapper>
