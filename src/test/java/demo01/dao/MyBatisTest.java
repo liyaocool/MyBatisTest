@@ -7,6 +7,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,58 +17,58 @@ import java.util.Date;
 
 
 public class MyBatisTest {
-    @Test
-    public void insertDept() {
-        Reader reader = null;
-        SqlSession session = null;
+    private Reader reader = null;
+    private SqlSession session = null;
+
+    @Before
+    public void open() {
+
         try {
             //1.读取配置文件
             reader = Resources.getResourceAsReader("MyBatisConfig.xml");
-
             //2.创建SqlSessionFactory工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
-
             //3.使用工厂生产SqlSession对象
             session = sessionFactory.openSession();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            //4执行数据库操作
+    }
+
+    @After
+    public void close() {
+        //释放资源
+        session.close();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void insertDept() {
+
+        try {
             Dept dept = new Dept();
             dept.setDeptno(19);
             dept.setDname("软件部");
             dept.setLoc("江苏");
             session.insert("demo01.dao.DeptMapper.addDept", dept);
             session.commit();
-            System.out.println("增加部门成功:"+ dept.toString());
+            System.out.println("增加部门成功:" + dept.toString());
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             session.rollback();
-        } finally {
-            //5释放资源
-            session.close();
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     @Test
     public void insertEmp() {
-        Reader reader = null;
-        SqlSession session = null;
+
         try {
-            //1.读取配置文件
-            reader = Resources.getResourceAsReader("MyBatisConfig.xml");
-
-            //2.创建SqlSessionFactory工厂
-            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
-
-            //3.使用工厂生产SqlSession对象
-            session = sessionFactory.openSession();
-
-            //4执行数据库操作
             Emp emp = new Emp();
             emp.setEmpno(66);
             emp.setEname("关羽");
@@ -78,19 +80,11 @@ public class MyBatisTest {
             emp.setDeptno(19);
             session.insert("demo01.dao.EmpMapper.addEmp", emp);
             session.commit();
-            System.out.println("增加员工成功:"+ emp.toString());
+            System.out.println("增加员工成功:" + emp.toString());
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             session.rollback();
-        } finally {
-            //5释放资源
-            session.close();
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
