@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="demo01.dao.DeptMapper">
+<mapper namespace="DeptMapper">
     <insert id="addDept" parameterType="demo01.pojo.Dept">
         insert into dept(DEPTNO, DNAME, LOC) VALUES (#{deptno}, #{dname}, #{loc})
     </insert>
@@ -13,4 +13,8 @@
             DNAME=#{dname}
         where DEPTNO=#{deptno}
     </update>
+
+    <delete id="deleteDept" parameterType="int">
+        delete from dept where DEPTNO=#{deptno}
+    </delete>
 </mapper>

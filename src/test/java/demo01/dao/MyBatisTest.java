@@ -55,7 +55,7 @@ public class MyBatisTest {
             dept.setDeptno(19);
             dept.setDname("软件部");
             dept.setLoc("江苏");
-            session.insert("demo01.dao.DeptMapper.addDept", dept);
+            session.insert("DeptMapper.addDept", dept);
             session.commit();
             System.out.println("增加部门成功:" + dept.toString());
 
@@ -73,9 +73,22 @@ public class MyBatisTest {
             dept.setDeptno(19);
             dept.setDname("测试部");
             dept.setLoc("徐州");
-            session.update("demo01.dao.DeptMapper.updateDept", dept);
+            session.update("DeptMapper.updateDept", dept);
             session.commit();
             System.out.println("修改部门成功:" + dept.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.rollback();
+        }
+    }
+    @Test
+    public void deleteDept() {
+
+        try {
+            session.delete("DeptMapper.deleteDept", 19);
+            session.commit();
+            System.out.println("删除部门成功.");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,7 +101,7 @@ public class MyBatisTest {
 
         try {
             Emp emp = new Emp();
-            emp.setEmpno(66);
+            emp.setEmpno(1066);
             emp.setEname("关羽");
             emp.setJob("将军");
             emp.setMgr(10086);
@@ -96,7 +109,7 @@ public class MyBatisTest {
             emp.setSal(2333.33);
             emp.setComm(6.66);
             emp.setDeptno(19);
-            session.insert("demo01.dao.EmpMapper.addEmp", emp);
+            session.insert("EmpMapper.addEmp", emp);
             session.commit();
             System.out.println("增加员工成功:" + emp.toString());
 
@@ -111,7 +124,7 @@ public class MyBatisTest {
 
         try {
             Emp emp = new Emp();
-            emp.setEmpno(66);
+            emp.setEmpno(1066);
             emp.setEname("刘备");
             emp.setJob("将军");
             emp.setMgr(10086);
@@ -119,11 +132,23 @@ public class MyBatisTest {
             emp.setSal(2333.33);
             emp.setComm(6.66);
             emp.setDeptno(19);
-            session.update("demo01.dao.EmpMapper.updateEmp", emp);
+            session.update("EmpMapper.updateEmp", emp);
             session.commit();
             System.out.println("修改员工成功:" + emp.toString());
 
         } catch (Exception e) {
+            e.printStackTrace();
+            session.rollback();
+        }
+    }
+
+    @Test
+    public void deleteEmp(){
+        try {
+            session.delete("EmpMapper.deleteEmp", 1066);
+            session.commit();
+            System.out.println("删除员工成功.");
+        } catch (Exception e){
             e.printStackTrace();
             session.rollback();
         }

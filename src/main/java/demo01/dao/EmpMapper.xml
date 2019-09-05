@@ -5,7 +5,7 @@
 
 <!--        namespace:命名空间,区分于其他mapper;-->
 <!--        parameterType:传参类型-->
-<mapper namespace="demo01.dao.EmpMapper">
+<mapper namespace="EmpMapper">
     <insert id="addEmp" parameterType="Emp">
         insert into emp (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
         VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
@@ -23,4 +23,7 @@
         where EMPNO=#{empno}
     </update>
 
+    <delete id="deleteEmp" parameterType="int">
+        delete from emp where EMPNO=#{empno}
+    </delete>
 </mapper>
