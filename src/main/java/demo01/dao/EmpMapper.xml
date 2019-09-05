@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--        namespace:命名空间,区分于其他mapper;-->
+<!--        parameterType:传参类型-->
+<mapper namespace="demo01.dao.EmpMapper">
+    <insert id="addEmp" parameterType="demo01.pojo.Emp">
+        insert into emp (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+        VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+    </insert>
+
+</mapper>
