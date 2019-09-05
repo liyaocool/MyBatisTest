@@ -21,4 +21,14 @@
     <select id="getAllDept" resultType="Dept">
         select DEPTNO, DNAME, LOC FROM dept
     </select>
+    
+    
+    <resultMap id="deptMap" type="Dept">
+        <id property="deptno" column="DEPTNO"/>
+        <result property="dname" column="deptname"/>
+    </resultMap>
+
+    <select id="getAllDeptMap" resultMap="deptMap">
+        select DEPTNO, DNAME deptname, LOC FROM dept
+    </select>
 </mapper>

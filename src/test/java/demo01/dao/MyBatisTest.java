@@ -113,6 +113,21 @@ public class MyBatisTest {
     }
 
     @Test
+    public void getAllDeptMap() {
+
+        try {
+            List<Dept> depts = session.selectList("DeptMapper.getAllDeptMap");
+            for (Dept dept : depts) {
+                System.out.println(dept);
+            }
+            System.out.println("查询所有部门结束");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void insertEmp() {
 
         try {
