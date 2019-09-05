@@ -11,4 +11,16 @@
         VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
     </insert>
 
+    <update id="updateEmp" parameterType="demo01.pojo.Emp">
+        update emp
+        set ENAME=#{ename},
+            JOB=#{job},
+            MGR=#{mgr},
+            HIREDATE=#{hiredate},
+            SAL=#{sal},
+            COMM=#{comm},
+            DEPTNO=#{deptno}
+        where EMPNO=#{empno}
+    </update>
+
 </mapper>

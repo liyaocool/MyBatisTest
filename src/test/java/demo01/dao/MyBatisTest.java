@@ -66,6 +66,24 @@ public class MyBatisTest {
     }
 
     @Test
+    public void updateDept() {
+
+        try {
+            Dept dept = new Dept();
+            dept.setDeptno(19);
+            dept.setDname("测试部");
+            dept.setLoc("徐州");
+            session.update("demo01.dao.DeptMapper.updateDept", dept);
+            session.commit();
+            System.out.println("修改部门成功:" + dept.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.rollback();
+        }
+    }
+
+    @Test
     public void insertEmp() {
 
         try {
@@ -81,6 +99,29 @@ public class MyBatisTest {
             session.insert("demo01.dao.EmpMapper.addEmp", emp);
             session.commit();
             System.out.println("增加员工成功:" + emp.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.rollback();
+        }
+    }
+
+    @Test
+    public void updateEmp() {
+
+        try {
+            Emp emp = new Emp();
+            emp.setEmpno(66);
+            emp.setEname("张飞");
+            emp.setJob("将军");
+            emp.setMgr(10086);
+            emp.setHiredate(new Date());
+            emp.setSal(2333.33);
+            emp.setComm(6.66);
+            emp.setDeptno(19);
+            session.update("demo01.dao.EmpMapper.updateEmp", emp);
+            session.commit();
+            System.out.println("修改员工成功:" + emp.toString());
 
         } catch (Exception e) {
             e.printStackTrace();

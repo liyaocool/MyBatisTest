@@ -6,4 +6,11 @@
     <insert id="addDept" parameterType="demo01.pojo.Dept">
         insert into dept(DEPTNO, DNAME, LOC) VALUES (#{deptno}, #{dname}, #{loc})
     </insert>
+
+    <update id="updateDept" parameterType="demo01.pojo.Dept">
+        update dept
+        set LOC=#{loc},
+            DNAME=#{dname}
+        where DEPTNO=#{deptno}
+    </update>
 </mapper>
