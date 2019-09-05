@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- MyBatis主要配置文件 -->
 <configuration>
+    <!--为mapper文件parameterType配置路径别名-->
+        <typeAliases>
+            <typeAlias type="demo01.pojo.Dept" alias="Dept"/>
+            <typeAlias type="demo01.pojo.Emp" alias="Emp"/>
+        </typeAliases>
     <!--配置环境-->
     <environments default="mysql_dev">
         <!--配置mysql环境-->

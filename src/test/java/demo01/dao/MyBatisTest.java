@@ -112,7 +112,7 @@ public class MyBatisTest {
         try {
             Emp emp = new Emp();
             emp.setEmpno(66);
-            emp.setEname("张飞");
+            emp.setEname("刘备");
             emp.setJob("将军");
             emp.setMgr(10086);
             emp.setHiredate(new Date());

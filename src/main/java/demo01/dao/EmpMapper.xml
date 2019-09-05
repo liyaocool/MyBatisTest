@@ -6,12 +6,12 @@
 <!--        namespace:命名空间,区分于其他mapper;-->
 <!--        parameterType:传参类型-->
 <mapper namespace="demo01.dao.EmpMapper">
-    <insert id="addEmp" parameterType="demo01.pojo.Emp">
+    <insert id="addEmp" parameterType="Emp">
         insert into emp (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
         VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
     </insert>
 
-    <update id="updateEmp" parameterType="demo01.pojo.Emp">
+    <update id="updateEmp" parameterType="Emp">
         update emp
         set ENAME=#{ename},
             JOB=#{job},
