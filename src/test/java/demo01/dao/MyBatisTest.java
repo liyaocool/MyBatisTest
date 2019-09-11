@@ -83,6 +83,7 @@ public class MyBatisTest {
             session.rollback();
         }
     }
+
     @Test
     public void deleteDept() {
 
@@ -133,7 +134,7 @@ public class MyBatisTest {
         try {
             Emp emp = new Emp();
             emp.setEmpno(1066);
-            emp.setEname("关羽");
+            emp.setEname("刘备");
             emp.setJob("将军");
             emp.setMgr(10086);
             emp.setHiredate(new Date());
@@ -174,12 +175,12 @@ public class MyBatisTest {
     }
 
     @Test
-    public void deleteEmp(){
+    public void deleteEmp() {
         try {
             session.delete("EmpMapper.deleteEmp", 1066);
             session.commit();
             System.out.println("删除员工成功.");
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             session.rollback();
         }
@@ -189,12 +190,28 @@ public class MyBatisTest {
     public void getAllEmp() {
 
         try {
-            List<Emp> emps = session.selectList("EmpMapper.getAllEmp");
+            List<Emp> emps = session.selectList("EmpMapper.getEmpByEname");
             for (Emp emp : emps) {
                 System.out.println(emp);
             }
             System.out.println("查询所有员工结束");
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //通过员工姓名或者工号动态查询
+    @Test
+    public void getEmpByName() {
+        try {
+            Emp newemp = new Emp();
+//            newemp.setEname("刘备");
+            newemp.setEmpno(1066);
+            List<Emp> emps = session.selectList("EmpMapper.getEmpByEname", newemp);
+            for (Emp emp : emps) {
+                System.out.println(emp);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

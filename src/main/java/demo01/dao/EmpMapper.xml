@@ -40,6 +40,22 @@
                deptno
         from emp
     </select>
+
+    <select id="getEmpByEname" resultType="Emp" parameterType="Emp">
+        select empno,
+               ename,
+               job,
+               mgr,
+               hiredate,
+               sal,
+               comm,
+               deptno
+        from emp
+        <where>
+            <if test="ename != null">ename=#{ename}</if>
+            <if test="empno != null">or empno=#{empno}</if>
+        </where>
+    </select>
     
     
     <resultMap id="empDeptMap" type="Emp">

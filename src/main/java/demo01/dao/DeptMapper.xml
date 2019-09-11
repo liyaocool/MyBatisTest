@@ -21,8 +21,8 @@
     <select id="getAllDept" resultType="Dept">
         select DEPTNO, DNAME, LOC FROM dept
     </select>
-    
-    
+
+
     <resultMap id="deptMap" type="Dept">
         <id property="deptno" column="DEPTNO"/>
         <result property="dname" column="deptname"/>
